@@ -8,7 +8,7 @@ is defined in "input_file.m" script.
 * Currently, all necessary material parameters are included. If necessary, the ternary alloy compositions can be arranged with "TernaryAlloy.m" script. 
 
 * The solutions of Schrodinger equation (wave-functions, energies of states, ...) can be achieved by running "SchrodingerPoisson1D_CB_Kane_Main.m" 
-script. The important settings are number of wave-function (n), resolution of the grid (dz), and temperature (T). The important outputs of this script 
+script. The important settings are number of wave-functions (n), resolution of the grid (dz), and temperature (T). The important outputs of this script 
 are wave-functions of states in quantum wells (psic), the enery values of these states(Ec), and spatial range along z-direction (z). /// The display 
 settings are currently arranged only to show "psi* x psi" plot.
 
@@ -20,6 +20,6 @@ rate between first and second energy states (T12). This script can be modified f
 
 * The two script can be used in a cascaded manner, i.e. saving and inputting outputs of the 1st script to 2nd script. As an alternative, "cascade_script.m" 
 script can be run directly, which will use both scripts. Still, the structure definition and simulation setting should be arranged with corresponding 
-scripts before using this script. This script is written for ease of use. 
+scripts before using this script. This script is added for ease of use. 
 
 * The first results are not consistent with the results in the example paper, we are working on it. 
