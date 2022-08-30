@@ -3,15 +3,14 @@ An overview to use of the scripts (last updated @ 30.08.2022):
 * The Github link for Schrodinger Solver: https://github.com/LaurentNevou/Q_SchrodingerPoisson1D_CB
 
 * Here, the input file contains the structure from an example paper "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.40.1074". The structure 
-is defined in "input_file.m" script under "Q_SchrodingerPoisson1D_CB" folder.
+is defined in "input_file.m" script.
 
-* Currently, all necessary material parameters are included. If necessary, the ternary alloy compositions can be arranged with "TernaryAlloy.m" script under 
-"Q_SchrodingerPoisson1D_CB" folder. 
+* Currently, all necessary material parameters are included. If necessary, the ternary alloy compositions can be arranged with "TernaryAlloy.m" script. 
 
 * The solutions of Schrodinger equation (wave-functions, energies of states, ...) can be achieved by running "SchrodingerPoisson1D_CB_Kane_Main.m" 
-script under "Q_SchrodingerPoisson1D_CB" folder. The important settings are number of wave-function (n), resolution of the grid (dz), and temperature 
-(T). The important outputs of this script are wave-functions of states in quantum wells (psic), the enery values of these states(Ec), and spatial 
-range along z-direction (z). /// The display settings are currently arranged only to show "psi* x psi" plot.
+script. The important settings are number of wave-function (n), resolution of the grid (dz), and temperature (T). The important outputs of this script 
+are wave-functions of states in quantum wells (psic), the enery values of these states(Ec), and spatial range along z-direction (z). /// The display 
+settings are currently arranged only to show "psi* x psi" plot.
 
 * The LO phonon scattering rate between first two state (T12) can be calculated by running "T12_code.m" script, based on the equations given at 
 "https://erwinjr2.readthedocs.io/en/latest/manual/physics_quantum.html?highlight=LO%20phonon#scattering-mechanism-lo-phonon"." The important inputs of 
@@ -20,7 +19,7 @@ wave-functions of states in quantum wells and spatial range along z-direction. T
 rate between first and second energy states (T12). This script can be modified for other systems and to calculate other phonon scattering rates. 
 
 * The two script can be used in a cascaded manner, i.e. saving and inputting outputs of the 1st script to 2nd script. As an alternative, "cascade_script.m" 
-script (under "Q_SchrodingerPoisson1D_CB" folder) can be run directly, which will use both scripts. Still, the structure definition and simulation setting 
-should be arranged with corresponding scripts before using this script. This script is written for ease of use. 
+script can be run directly, which will use both scripts. Still, the structure definition and simulation setting should be arranged with corresponding 
+scripts before using this script. This script is written for ease of use. 
 
 * The first results are not consistent with the results in the example paper, we are working on it. 
