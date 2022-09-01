@@ -20,15 +20,15 @@ eps_static = 12.9; % relative static permittivity (material dependent)
 psi_1=psic(:,1); % wave-function of 1st state 
 psi_2=psic(:,2); % wave-function of 2nd state  
 
-delta_Ec= Ec(2)-Ec(1); % energy difference between 1st and 2nd states, eV
+delta_Ec= (Ec(2)-Ec(1))*e; % energy difference between 1st and 2nd states, eV
 
 w_lo=h_bar_w_lo/h_bar; % optical phonon frequency
 
 eps_p=1/((1/eps_inf)-(1/eps_static)); 
-
+% eps_p=64; 
 
 % The lower state electron momentum, based on k_u=0 assumption. 
-k_l=(abs(w_lo-(e*delta_Ec)/h_bar)*2*m_star_l)^(1/2); 
+k_l=(abs(w_lo/h_bar-delta_Ec/(h_bar^2))*2*m_star_l)^(1/2); 
 
 % The following is the integral to calculate I_12(k_l).
 integral_result=0;
@@ -44,10 +44,22 @@ while i < length(z)+1
     i=i+1;
 end
 
+% integral_result = 0;
+% for i = 1:length(z)
+%     for j = 1:length(z)
+%         dIij = psi_1(j) * psi_2(j) * exp(-k_l*abs(z(i)-z(j))) * psi_1(i) * psi_2(j) * (dz).^2;
+%         integral_result = integral_result + dIij;
+%     end
+% end
+
+
+% sum1=sum(psi_1.*psi_1)*1e-11
+% sum2=sum(psi_2.*psi_2)*1e-11
+
 I_12=(1/k_l)*integral_result;
 
-T_12=((4.*(h_bar^2).*eps_p)./(m_star_l.*(e^2).*w_lo.*I_12))*1e9; % ns
+T_12=((4.*(h_bar^2).*eps_p)./(m_star_l.*(e^2).*w_lo.*I_12))*1e12; % ps
 
-display("The T_12 is :"+T_12+" ns");
+display("The T_12 is :"+T_12+" ps");
 
 
