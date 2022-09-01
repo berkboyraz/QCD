@@ -20,7 +20,7 @@ eps_static = 12.9; % relative static permittivity (material dependent)
 psi_1=psic(:,1); % wave-function of 1st state 
 psi_2=psic(:,2); % wave-function of 2nd state  
 
-delta_Ec= (Ec(2)-Ec(1))*e; % energy difference between 1st and 2nd states, eV
+delta_Ec= (Ec(2)-Ec(1))*e; % energy difference between 1st and 2nd states, J
 
 w_lo=h_bar_w_lo/h_bar; % optical phonon frequency
 
