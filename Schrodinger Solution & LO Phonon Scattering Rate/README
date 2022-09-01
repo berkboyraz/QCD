@@ -1,4 +1,4 @@
-An overview to use of the scripts (last updated @ 30.08.2022):
+An overview to use of the scripts (last updated @ 01.09.2022):
 
 * The Github link for Schrodinger Solver: https://github.com/LaurentNevou/Q_SchrodingerPoisson1D_CB
 
@@ -21,5 +21,3 @@ rate between first and second energy states (T12). This script can be modified f
 * The two script can be used in a cascaded manner, i.e. saving and inputting outputs of the 1st script to 2nd script. As an alternative, "cascade_script.m" 
 script can be run directly, which will use both scripts. Still, the structure definition and simulation setting should be arranged with corresponding 
 scripts before using this script. This script is added for ease of use. 
-
-* The first results are not consistent with the results in the example paper, we are working on it. 
