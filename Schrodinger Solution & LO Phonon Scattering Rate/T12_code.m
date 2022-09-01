@@ -58,8 +58,18 @@ end
 
 I_12=(1/k_l)*integral_result;
 
-T_12=((4.*(h_bar^2).*eps_p)./(m_star_l.*(e^2).*w_lo.*I_12))*1e12; % ps
-
+T_12=((4.*(h_bar^2).*eps_p*eps_0)./(m_star_l.*(e^2).*w_lo.*I_12))*1e12; % ps
 display("The T_12 is :"+T_12+" ps");
+
+PsiTPsii=0;
+PsiTPsij=0;
+ for q = 1:length(z)
+     PsiTPsii = PsiTPsii + psi_1(q) * ((Ec(2)-V0(q))/(Ec(2)-V0(q)+Eg(q))) * psi_1(q) * 1e-11;
+     PsiTPsij = PsiTPsij + psi_1(q) * ((Ec(1)-V0(q))/(Ec(1)-V0(q)+Eg(q))) * psi_1(q) * 1e-11;
+ end
+
+ T_12_new=((4.*(h_bar^2).*eps_p*eps_0)./(m_star_l.*(e^2).*w_lo.*I_12))*1e12*(1+PsiTPsii)*(1+PsiTPsij); % ps
+
+display("The T_12_new is :"+T_12_new+" ps");
 
 
