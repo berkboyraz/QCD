@@ -1,5 +1,5 @@
 % A script to solve rate equations for a system with N=5 state using 4th
-% order Runge Kutta method. I will expEcress the problem using matrices. 
+% order Runge Kutta method. I will express the problem using matrices. 
 
 % Useful source (starts from basics to finak 4th order Runge Kutta method):
 % URL: https://lpsa.swarthmore.edu/NumInt/NumIntIntro.html
