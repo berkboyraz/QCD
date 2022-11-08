@@ -44,10 +44,10 @@ kB   = 1.3806488E-23;               %% Boltzmann's constant [J/K]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Nloops = 2;                   % number of loops
+Nloops = 10;                   % number of loops
 model  = 2;                   % 1=shooting; 2=Kane
 StrainModel = 0;              % Activate Strain model
-n      = 2;                   % number of solution asked per model
+n      = 12;                   % number of solution asked per model
 ScF    = 0.2;                 % scaling factor to plot the wave function [Without Dimension]
 dz     = 0.1e-10;               % resolution of the grid [m]
 T      = 300;                 % Temperature [Kelvin]
@@ -82,7 +82,7 @@ TernaryAlloy;             % compute the ternary alloy
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-input_file;
+input_file_Saha_Kumar;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
