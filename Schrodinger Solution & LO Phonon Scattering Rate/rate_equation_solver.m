@@ -6,6 +6,25 @@
 
 % Lifetimes, should be calculated previously:
 
+% For the current settings (8.11.2022), i.e. number of Poisson loops is
+% NLoops=10, and input structure is as in "input_file_Saha_Kumar.m", the
+% state labels and corresponding wavefunctions are as follows:
+
+% psi(:,1)-->1
+% psi(:,2)-->1++
+% psi(:,3)-->1+
+% psi(:,4)-->2+
+% psi(:,5)-->2
+% psi(:,6)-->3
+% psi(:,7)-->3+
+% psi(:,8)-->4
+% psi(:,9)-->4+
+% psi(:,10)-->5
+% psi(:,11)-->5++
+% psi(:,12)-->5+
+
+% Considering the labels above, the lifetimes are calculated as:
+
 T12= T_LO_code_for_rate_equation_solver(1,5,psic,Ec,z);
 T12p= T_LO_code_for_rate_equation_solver(1,4,psic,Ec,z);
 T1p2= T_LO_code_for_rate_equation_solver(3,5,psic,Ec,z);
@@ -141,13 +160,21 @@ n3=zeros(1, length(t));
 n4=zeros(1, length(t));
 n5=zeros(1, length(t));
 
-% Initial values:
+% % Initial values (setting 1):
+% 
+% n1(1)=2e17;
+% n2(1)=1e7;
+% n3(1)=1e4;
+% n4(1)=1e1;
+% n5(1)=1e-1;
+
+% Initial values (setting 2):
 
 n1(1)=2e17;
-n2(1)=0;
-n3(1)=0;
-n4(1)=0;
-n5(1)=0;
+n2(1)=1e14;
+n3(1)=1e11;
+n4(1)=1e8;
+n5(1)=1e5;
 
 % Solution:
 
