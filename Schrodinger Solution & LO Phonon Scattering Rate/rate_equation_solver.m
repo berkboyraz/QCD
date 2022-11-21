@@ -25,6 +25,9 @@
 
 % Considering the labels above, the lifetimes are calculated as:
 
+T11p= T_LO_code_for_rate_equation_solver(1,3,psic,Ec,z);
+T1p1= T_LO_code_for_rate_equation_solver(3,1,psic,Ec,z);
+
 T12= T_LO_code_for_rate_equation_solver(1,5,psic,Ec,z);
 T12p= T_LO_code_for_rate_equation_solver(1,4,psic,Ec,z);
 T1p2= T_LO_code_for_rate_equation_solver(3,5,psic,Ec,z);
@@ -57,7 +60,8 @@ T51= T_LO_code_for_rate_equation_solver(10,1,psic,Ec,z);
 T51p= T_LO_code_for_rate_equation_solver(10,3,psic,Ec,z);
 T5p1= T_LO_code_for_rate_equation_solver(12,1,psic,Ec,z);
 
-
+T22p= T_LO_code_for_rate_equation_solver(5,4,psic,Ec,z);
+T2p2= T_LO_code_for_rate_equation_solver(4,5,psic,Ec,z);
 
 T23= T_LO_code_for_rate_equation_solver(5,6,psic,Ec,z);
 T23p= T_LO_code_for_rate_equation_solver(5,7,psic,Ec,z);
@@ -83,7 +87,8 @@ T52= T_LO_code_for_rate_equation_solver(10,5,psic,Ec,z);
 T52p= T_LO_code_for_rate_equation_solver(10,4,psic,Ec,z);
 T5p2= T_LO_code_for_rate_equation_solver(12,5,psic,Ec,z);
 
-
+T33p= T_LO_code_for_rate_equation_solver(6,7,psic,Ec,z);
+T3p3= T_LO_code_for_rate_equation_solver(7,6,psic,Ec,z);
 
 T34= T_LO_code_for_rate_equation_solver(6,8,psic,Ec,z);
 T34p= T_LO_code_for_rate_equation_solver(6,9,psic,Ec,z);
@@ -101,7 +106,8 @@ T53= T_LO_code_for_rate_equation_solver(10,6,psic,Ec,z);
 T53p= T_LO_code_for_rate_equation_solver(10,7,psic,Ec,z);
 T5p3= T_LO_code_for_rate_equation_solver(12,6,psic,Ec,z);
 
-
+T44p= T_LO_code_for_rate_equation_solver(8,9,psic,Ec,z);
+T4p4= T_LO_code_for_rate_equation_solver(9,8,psic,Ec,z);
 
 T45= T_LO_code_for_rate_equation_solver(8,10,psic,Ec,z);
 T45p= T_LO_code_for_rate_equation_solver(8,12,psic,Ec,z);
@@ -111,6 +117,11 @@ T54= T_LO_code_for_rate_equation_solver(10,8,psic,Ec,z);
 T54p= T_LO_code_for_rate_equation_solver(10,9,psic,Ec,z);
 T5p4= T_LO_code_for_rate_equation_solver(12,8,psic,Ec,z);
 
+T55p= T_LO_code_for_rate_equation_solver(10,12,psic,Ec,z);
+T5p5= T_LO_code_for_rate_equation_solver(12,10,psic,Ec,z);
+
+Tijp_matrix= [T11p T12p T13p T14p T15p; T21p T22p T23p T24p T25p; T31p T32p T33p T34p T35p; T41p T42p T43p T44p T45p; T51p T52p T53p T54p T55p];
+Tipj_matrix= [T1p1 T1p2 T1p3 T1p4 T1p5; T2p1 T2p2 T2p3 T2p4 T2p5; T3p1 T3p2 T3p3 T3p4 T3p5; T4p1 T4p2 T4p3 T4p4 T4p5; T5p1 T5p2 T5p3 T5p4 T5p5];
 
 % Formation of coefficient matrix:
 
@@ -203,6 +214,7 @@ semilogy(t, n1, t, n2, t, n3, t, n4, t, n5, LineWidth=5);
 grid("minor");
 legend("n1", "n2", "n3", "n4", "n5",Location="best");
 
+ni_matrix= [n1(1e8+1) n2(1e8+1) n3(1e8+1) n4(1e8+1) n5(1e8+1)];
 
 
 
