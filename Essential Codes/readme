@@ -21,7 +21,7 @@ radiative_transition_rate_function.m
 6) Rate Equation Solution
 rate_equation_solver.m
 
-7) Photocurent Density
+7) Photocurent Density and Responsivity
 J_photo_solver.m
 responsivity_calculator.m
 
