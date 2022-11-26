@@ -44,7 +44,7 @@ kB   = 1.3806488E-23;               %% Boltzmann's constant [J/K]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Nloops = 10;                   % number of loops
+Nloops = 4;                   % number of loops
 model  = 2;                   % 1=shooting; 2=Kane
 StrainModel = 0;              % Activate Strain model
 n      = 12;                   % number of solution asked per model
