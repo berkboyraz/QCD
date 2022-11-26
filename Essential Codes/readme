@@ -1,1 +1,30 @@
 
+1) Schrodinger Solver
+SchrodingerPoisson1D_CB_Kane_Main.m 
+
+2) Ternary Alloy Data
+TernaryAlloy.m
+
+3) Device Dimensions (from Saha Kumar paper)
+input_file_Saha_Kumar.m 
+
+4) Several Functions (used in Schrodinger solver)
+scale_PSI.m 
+Library.m
+ExtractParameters.m
+materialDB_ZB.csv
+
+5) Scattering Mechanisms
+T_LO_function.m
+radiative_transition_rate_function.m
+
+6) Rate Equation Solution
+rate_equation_solver.m
+
+7) Photocurent Density
+J_photo_solver.m
+responsivity_calculator.m
+
+8) Single Code That Runs Whole System
+cascade_script.m
+
