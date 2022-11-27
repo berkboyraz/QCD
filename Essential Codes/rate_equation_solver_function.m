@@ -1,4 +1,4 @@
-function [ni_matrix, Tijp_matrix, Tipj_matrix] =rate_equation_solver(psic, Ec, z, P_in_eV)
+function [ni_matrix, Tijp_matrix, Tipj_matrix] =rate_equation_solver_function(psic, Ec, z, P_in_eV)
 
 % A script to solve rate equations for a system with N=5 state using 4th
 % order Runge Kutta method. I will express the problem using matrices. 

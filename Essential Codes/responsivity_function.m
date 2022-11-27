@@ -1,4 +1,4 @@
-function responsivity = responsivity_calculator(Pin, J_photo)
+function responsivity = responsivity_function(Pin, J_photo)
 
 responsivity=J_photo/Pin;
 

@@ -2,14 +2,15 @@ clear all
 close all
 clc
 
-T_array= linspace(10,290, 9); % [kelvin]
+T_array= linspace(100,300, 3); % [kelvin]
 P_in_eV=1e-3; % [eV]
+applied_voltage=0.01; % [V]
 
 responsivity_array = zeros(1,length(T_array));
 
 i=1;
 while i<length(T_array)
-    [psic, Ec, z] = SchrodingerPoisson1D_CB_Kane_Main(T_array(i));
+    [psic, Ec, z] = SchrodingerPoisson1D_CB_Kane_Main(T_array(i), applied_voltage);
     [ni_matrix, Tijp_matrix, Tipj_matrix] = rate_equation_solver_function(psic, Ec, z,P_in_eV);
     J_photo = J_photo_function(ni_matrix, Tijp_matrix, Tipj_matrix);
     responsivity_array(i) = responsivity_function(P_in_eV,J_photo);

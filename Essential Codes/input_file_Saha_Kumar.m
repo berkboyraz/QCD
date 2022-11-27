@@ -10,7 +10,8 @@
 % Saha Kumar
 
 substrate=InP;
-F0=0;            % Electric field [Volt/meter]
+% I will take the F0 as input in the Schrodinger solver code. 
+% F0=0;            % Electric field [Volt/meter]
 
 M=[
     

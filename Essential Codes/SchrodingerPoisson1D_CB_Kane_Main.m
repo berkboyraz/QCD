@@ -1,4 +1,4 @@
-function [psic, Ec, z] = SchrodingerPoisson1D_CB_Kane_Main(temp_kelvin)
+function [psic, Ec, z] = SchrodingerPoisson1D_CB_Kane_Main(temp_kelvin, applied_voltage)
 
 
 
@@ -51,6 +51,10 @@ n      = 12;                   % number of solution asked per model
 ScF    = 0.2;                 % scaling factor to plot the wave function [Without Dimension]
 dz     = 0.1e-10;               % resolution of the grid [m]
 T      = temp_kelvin;                 % Temperature [Kelvin]
+
+%%%
+F0 = applied_voltage/(107.9e-9); % electric field [V/m]
+%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
