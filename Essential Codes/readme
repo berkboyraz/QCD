@@ -19,11 +19,11 @@ T_LO_function.m
 radiative_transition_rate_function.m
 
 6) Rate Equation Solution
-rate_equation_solver.m
+rate_equation_solver_function.m
 
 7) Photocurent Density and Responsivity
-J_photo_solver.m
-responsivity_calculator.m
+J_photo_function.m
+responsivity_function.m
 
 8) Single Code That Runs Whole System
 cascade_script.m
