@@ -1,4 +1,4 @@
-function J_photo= J_photo_solver(ni_matrix, Tijp_matrix, Tipj_matrix)
+function J_photo= J_photo_function(ni_matrix, Tijp_matrix, Tipj_matrix)
 
 e = 1.602176487E-19; % electron charge [C]
 

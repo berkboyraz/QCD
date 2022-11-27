@@ -28,3 +28,6 @@ responsivity_calculator.m
 8) Single Code That Runs Whole System
 cascade_script.m
 
+9) Script for Temperature vs Responsivity Simulation
+T_variation_script.m
+

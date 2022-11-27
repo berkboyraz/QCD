@@ -211,10 +211,10 @@ while i<length(t)
     n5(i)=Q_next(5);
 end
 
-figure('units','normalized','outerposition',[0 0 1 1]);
-semilogy(t, n1, t, n2, t, n3, t, n4, t, n5, LineWidth=5);
-grid("minor");
-legend("n1", "n2", "n3", "n4", "n5",Location="best");
+% figure('units','normalized','outerposition',[0 0 1 1]);
+% semilogy(t, n1, t, n2, t, n3, t, n4, t, n5, LineWidth=5);
+% grid("minor");
+% legend("n1", "n2", "n3", "n4", "n5",Location="best");
 
 ni_matrix= [n1(1e8+1) n2(1e8+1) n3(1e8+1) n4(1e8+1) n5(1e8+1)];
 
