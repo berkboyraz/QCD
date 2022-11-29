@@ -41,7 +41,7 @@ end
 
 I_12=(1/k_l)*integral_result;
 
-T_12=((4.*(h_bar^2).*eps_p*eps_0)./(m_star_l.*(e^2).*w_lo.*I_12))*1e12; % ps
+T_12=((4.*(h_bar^2).*eps_p*eps_0)./(m_star_l.*(e^2).*w_lo.*I_12)); % s
 
 end
 

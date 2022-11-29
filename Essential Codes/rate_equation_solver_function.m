@@ -1,4 +1,4 @@
-function [ni_matrix, Tijp_matrix, Tipj_matrix] =rate_equation_solver_function(psic, Ec, z, P_in_eV)
+function [ni_matrix, Tijp_matrix, Tipj_matrix] =rate_equation_solver_function(psic, Ec, z, P_in_W_m2,w_pht)
 
 % A script to solve rate equations for a system with N=5 state using 4th
 % order Runge Kutta method. I will express the problem using matrices. 
@@ -54,11 +54,11 @@ T41= T_LO_function(8,1,psic,Ec,z);
 T41p= T_LO_function(8,3,psic,Ec,z);
 T4p1= T_LO_function(9,1,psic,Ec,z);
 
-T15= 1/(1/T_LO_function(1,10,psic,Ec,z)+1/radiative_transition_rate_function(45,3.5,15e-3,Ec,0,P_in_eV,psic,z,1,10));
+T15= 1/(1/T_LO_function(1,10,psic,Ec,z)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,1,10))
 T15p= T_LO_function(1,12,psic,Ec,z);
 T1p5= T_LO_function(3,10,psic,Ec,z);
 
-T51= 1/(T_LO_function(10,1,psic,Ec,z)+1/radiative_transition_rate_function(45,3.5,15e-3,Ec,0,P_in_eV,psic,z,10,1));
+T51= 1/(T_LO_function(10,1,psic,Ec,z)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,10,1))
 T51p= T_LO_function(10,3,psic,Ec,z);
 T5p1= T_LO_function(12,1,psic,Ec,z);
 
@@ -162,8 +162,8 @@ A = [ a11 a12 a13 a14 a15 ; a21 a22 a23 a24 a25 ; a31 a32 a33 a34 a35 ;
 
 % Time step:
 
-h=1e-6;
-t=linspace(0,1e2,1e8+1);
+h=1e-18;
+t=linspace(0,1e-10,1e8+1);
 
 % Densities of states:
 
@@ -183,11 +183,11 @@ n5=zeros(1, length(t));
 
 % Initial values (setting 2):
 
-n1(1)=2e20;
-n2(1)=1e14;
-n3(1)=1e11;
-n4(1)=1e8;
-n5(1)=1e20;
+n1(1)=2e17;
+n2(1)=1e15;
+n3(1)=1e15;
+n4(1)=1e15;
+n5(1)=1e15;
 
 % Solution:
 
@@ -211,10 +211,10 @@ while i<length(t)
     n5(i)=Q_next(5);
 end
 
-% figure('units','normalized','outerposition',[0 0 1 1]);
-% semilogy(t, n1, t, n2, t, n3, t, n4, t, n5, LineWidth=5);
-% grid("minor");
-% legend("n1", "n2", "n3", "n4", "n5",Location="best");
+figure('units','normalized','outerposition',[0 0 1 1]);
+semilogy(t, n1, t, n2, t, n3, t, n4, t, n5, LineWidth=5);
+grid("minor");
+legend("n1", "n2", "n3", "n4", "n5",Location="best");
 
 ni_matrix= [n1(1e8+1) n2(1e8+1) n3(1e8+1) n4(1e8+1) n5(1e8+1)];
 
