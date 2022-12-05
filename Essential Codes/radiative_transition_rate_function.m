@@ -16,20 +16,20 @@ Ef_Ei_diff_J = abs(Ef_J-Ei_J) ; % [J]
 psi_i = psic(:,state_i_index);
 psi_f = psic(:,state_f_index);
 
-fi = P_in_W_m2/Ef_Ei_diff_J; % photon flux, number of incoming photon per second per m2 [1/(m2*s)]
+fi = P_in_W_m2/(h_bar*w_pht); % photon flux, number of incoming photon per second per m2 [1/(m2*s)]
 
 part_1= ((e^2)*gamma_J*w_pht*fi*(cos(theta_radian))^2)/(2*c*n_eff*eps_0);
 part_2= ((Ef_Ei_diff_J)-h_bar*w_pht)^2+(0.5*gamma_J)^2;
 
-integral_result=0;
+integral_result_sqroot=0;
 i=1;
 while i < length(z)+1
-    integral_result=integral_result+((1e-11)*psi_i(i)*z(i)*psi_f(i))^2;
+    integral_result_sqroot=integral_result_sqroot+(1e-11)*psi_i(i)*z(i)*psi_f(i);
     % Here, dz (infinitesimal differantial variables) is represented with 1e-11.
     i=i+1;
 end
 
-radiative_transmission_rate = part_1*integral_result/part_2
+radiative_transmission_rate = part_1*(integral_result_sqroot^2)/part_2
 % radiative_transmission_rate = 0;
 
 end
