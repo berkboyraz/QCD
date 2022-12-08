@@ -163,7 +163,7 @@ A = [ a11 a12 a13 a14 a15 ; a21 a22 a23 a24 a25 ; a31 a32 a33 a34 a35 ;
 % Time step:
 
 h=1e-18;
-t=linspace(0,1e-10,1e8+1);
+t=linspace(0,1e-11,1e7+1);
 
 % Densities of states:
 
