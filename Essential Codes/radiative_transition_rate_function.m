@@ -29,7 +29,7 @@ while i < length(z)+1
     i=i+1;
 end
 
-radiative_transmission_rate = part_1*(integral_result_sqroot^2)/part_2
+radiative_transmission_rate = part_1*(integral_result_sqroot^2)/part_2;
 % radiative_transmission_rate = 0;
 
 end

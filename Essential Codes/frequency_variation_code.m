@@ -15,7 +15,7 @@ i=1;
 for w_pht_ = w_pht
 [ni_matrix, Tijp_matrix, Tipj_matrix] = rate_equation_solver_function(psic, Ec, z,P_in_W_m2, w_pht_);
 photocurrent_density(i) = J_photo_function(ni_matrix, Tijp_matrix, Tipj_matrix);
-responsivity(i) = responsivity_function(P_in_W_m2,photocurrent_density(i));
+% responsivity(i) = responsivity_function(P_in_W_m2,photocurrent_density(i));
 i=i+1;
 end
 
