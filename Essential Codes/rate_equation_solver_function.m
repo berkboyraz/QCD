@@ -54,11 +54,13 @@ T41= T_LO_function(8,1,psic,Ec,z);
 T41p= T_LO_function(8,3,psic,Ec,z);
 T4p1= T_LO_function(9,1,psic,Ec,z);
 
-T15= 1/(1/T_LO_function(1,10,psic,Ec,z)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,1,10))
+% T15= 1/(1/T_LO_function(1,10,psic,Ec,z)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,1,10));
+T15= T_LO_function(1,10,psic,Ec,z);
 T15p= T_LO_function(1,12,psic,Ec,z);
 T1p5= T_LO_function(3,10,psic,Ec,z);
 
-T51= 1/(T_LO_function(10,1,psic,Ec,z)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,10,1))
+% T51= 1/(T_LO_function(10,1,psic,Ec,z)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,10,1));
+T51= T_LO_function(10,1,psic,Ec,z);
 T51p= T_LO_function(10,3,psic,Ec,z);
 T5p1= T_LO_function(12,1,psic,Ec,z);
 
@@ -162,8 +164,8 @@ A = [ a11 a12 a13 a14 a15 ; a21 a22 a23 a24 a25 ; a31 a32 a33 a34 a35 ;
 
 % Time step:
 
-h=1e-18;
-t=linspace(0,1e-11,1e7+1);
+h=1e-19;
+t=linspace(0,2e-11,2e8+1);
 
 % Densities of states:
 
@@ -184,10 +186,10 @@ n5=zeros(1, length(t));
 % Initial values (setting 2):
 
 n1(1)=2e17;
-n2(1)=1e15;
-n3(1)=1e15;
-n4(1)=1e15;
-n5(1)=1e15;
+n2(1)=1e3;
+n3(1)=1e3;
+n4(1)=1e3;
+n5(1)=1e3;
 
 % Solution:
 
@@ -216,7 +218,7 @@ semilogy(t, n1, t, n2, t, n3, t, n4, t, n5, LineWidth=5);
 grid("minor");
 legend("n1", "n2", "n3", "n4", "n5",Location="best");
 
-ni_matrix= [n1(1e8+1) n2(1e8+1) n3(1e8+1) n4(1e8+1) n5(1e8+1)];
+ni_matrix= [n1(2e8+1) n2(2e8+1) n3(2e8+1) n4(2e8+1) n5(2e8+1)];
 
 
 

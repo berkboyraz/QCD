@@ -33,17 +33,20 @@ psi_5=psic(:,10);
 % 
 % T_rad=1/W_rad;
 
-wavelength= linspace(6e-6,13e-6,1e3);
-wavelength_in_um=wavelength*10^6;
+
+wavelength= 9e-6;
 w_pht=2*pi*c./wavelength;
 
-for i=1:length(wavelength)
-rate_matrix(i)=radiative_transition_rate_function(45,3.5,0.015,Ec,w_pht(i),10, psic,z,1,10);
-end
+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,10,psic,z,1,10)
 
-figure('units','normalized','outerposition',[0 0 1 1]);
-plot(wavelength_in_um, rate_matrix, LineWidth=5);
-xlabel('Wavelength in um','FontSize',15)
-ylabel('Radiative Transition Rate in 1/s','FontSize',15)
-grid("minor");
+% 
+% for i=1:length(wavelength)
+% rate_matrix(i)=radiative_transition_rate_function(45,3.5,0.015,Ec,w_pht(i),10, psic,z,1,10);
+% end
+% 
+% figure('units','normalized','outerposition',[0 0 1 1]);
+% plot(wavelength_in_um, rate_matrix, LineWidth=5);
+% xlabel('Wavelength in um','FontSize',15)
+% ylabel('Radiative Transition Rate in 1/s','FontSize',15)
+% grid("minor");
 

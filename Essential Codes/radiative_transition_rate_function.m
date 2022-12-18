@@ -24,7 +24,8 @@ part_2= ((Ef_Ei_diff_J)-h_bar*w_pht)^2+(0.5*gamma_J)^2;
 integral_result_sqroot=0;
 i=1;
 while i < length(z)+1
-    integral_result_sqroot=integral_result_sqroot+(1e-11)*psi_i(i)*z(i)*psi_f(i);
+%     integral_result_sqroot=integral_result_sqroot+(1e-11)*psi_i(i)*z(i)*psi_f(i);
+    integral_result_sqroot=integral_result_sqroot+(1e-11)*psi_i(i)*(z(i)-(4.7+10.7/2))*psi_f(i);
     % Here, dz (infinitesimal differantial variables) is represented with 1e-11.
     i=i+1;
 end
