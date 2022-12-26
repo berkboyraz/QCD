@@ -1,4 +1,4 @@
-function [ni_matrix, Tijp_matrix, Tipj_matrix] =rate_equation_solver_function(psic, Ec, z, P_in_W_m2,w_pht)
+function [ni_matrix, Tijp_matrix, Tipj_matrix, Tij_matrix] =rate_equation_solver_function(psic, Ec, z, P_in_W_m2,w_pht,T)
 
 % A script to solve rate equations for a system with N=5 state using 4th
 % order Runge Kutta method. I will express the problem using matrices. 
@@ -27,105 +27,106 @@ function [ni_matrix, Tijp_matrix, Tipj_matrix] =rate_equation_solver_function(ps
 
 % Considering the labels above, the lifetimes are calculated as:
 
-T11p= T_LO_function(1,3,psic,Ec,z);
-T1p1= T_LO_function(3,1,psic,Ec,z);
+T11p= T_LO_function(1,3,psic,Ec,z,T);
+T1p1= T_LO_function(3,1,psic,Ec,z,T);
 
-T12= T_LO_function(1,5,psic,Ec,z);
-T12p= T_LO_function(1,4,psic,Ec,z);
-T1p2= T_LO_function(3,5,psic,Ec,z);
+T12= T_LO_function(1,5,psic,Ec,z,T);
+T12p= T_LO_function(1,4,psic,Ec,z,T);
+T1p2= T_LO_function(3,5,psic,Ec,z,T);
 
-T21= T_LO_function(5,1,psic,Ec,z);
-T21p= T_LO_function(5,3,psic,Ec,z);
-T2p1= T_LO_function(4,1,psic,Ec,z);
+T21= T_LO_function(5,1,psic,Ec,z,T);
+T21p= T_LO_function(5,3,psic,Ec,z,T);
+T2p1= T_LO_function(4,1,psic,Ec,z,T);
 
-T13= T_LO_function(1,6,psic,Ec,z);
-T13p= T_LO_function(1,7,psic,Ec,z);
-T1p3= T_LO_function(3,6,psic,Ec,z);
+T13= T_LO_function(1,6,psic,Ec,z,T);
+T13p= T_LO_function(1,7,psic,Ec,z,T);
+T1p3= T_LO_function(3,6,psic,Ec,z,T);
 
-T31= T_LO_function(6,1,psic,Ec,z);
-T31p= T_LO_function(6,3,psic,Ec,z);
-T3p1= T_LO_function(7,1,psic,Ec,z);
+T31= T_LO_function(6,1,psic,Ec,z,T);
+T31p= T_LO_function(6,3,psic,Ec,z,T);
+T3p1= T_LO_function(7,1,psic,Ec,z,T);
 
-T14= T_LO_function(1,8,psic,Ec,z);
-T14p= T_LO_function(1,9,psic,Ec,z);
-T1p4= T_LO_function(3,8,psic,Ec,z);
+T14= T_LO_function(1,8,psic,Ec,z,T);
+T14p= T_LO_function(1,9,psic,Ec,z,T);
+T1p4= T_LO_function(3,8,psic,Ec,z,T);
 
-T41= T_LO_function(8,1,psic,Ec,z);
-T41p= T_LO_function(8,3,psic,Ec,z);
-T4p1= T_LO_function(9,1,psic,Ec,z);
+T41= T_LO_function(8,1,psic,Ec,z,T);
+T41p= T_LO_function(8,3,psic,Ec,z,T);
+T4p1= T_LO_function(9,1,psic,Ec,z,T);
 
-% T15= 1/(1/T_LO_function(1,10,psic,Ec,z)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,1,10));
-T15= T_LO_function(1,10,psic,Ec,z);
-T15p= T_LO_function(1,12,psic,Ec,z);
-T1p5= T_LO_function(3,10,psic,Ec,z);
+T15= 1/(1/T_LO_function(1,10,psic,Ec,z,T)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,1,10));
+% T15= T_LO_function(1,10,psic,Ec,z,T);
+T15p= T_LO_function(1,12,psic,Ec,z,T);
+T1p5= T_LO_function(3,10,psic,Ec,z,T);
 
-% T51= 1/(T_LO_function(10,1,psic,Ec,z)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,10,1));
-T51= T_LO_function(10,1,psic,Ec,z);
-T51p= T_LO_function(10,3,psic,Ec,z);
-T5p1= T_LO_function(12,1,psic,Ec,z);
+T51= 1/(T_LO_function(10,1,psic,Ec,z,T)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,10,1))
+% T51= T_LO_function(10,1,psic,Ec,z,T);
+T51p= T_LO_function(10,3,psic,Ec,z,T);
+T5p1= T_LO_function(12,1,psic,Ec,z,T);
 
-T22p= T_LO_function(5,4,psic,Ec,z);
-T2p2= T_LO_function(4,5,psic,Ec,z);
+T22p= T_LO_function(5,4,psic,Ec,z,T);
+T2p2= T_LO_function(4,5,psic,Ec,z,T);
 
-T23= T_LO_function(5,6,psic,Ec,z);
-T23p= T_LO_function(5,7,psic,Ec,z);
-T2p3= T_LO_function(4,6,psic,Ec,z);
+T23= T_LO_function(5,6,psic,Ec,z,T);
+T23p= T_LO_function(5,7,psic,Ec,z,T);
+T2p3= T_LO_function(4,6,psic,Ec,z,T);
 
-T32= T_LO_function(6,5,psic,Ec,z);
-T32p= T_LO_function(6,4,psic,Ec,z);
-T3p2= T_LO_function(7,5,psic,Ec,z);
+T32= T_LO_function(6,5,psic,Ec,z,T);
+T32p= T_LO_function(6,4,psic,Ec,z,T);
+T3p2= T_LO_function(7,5,psic,Ec,z,T);
 
-T24= T_LO_function(5,8,psic,Ec,z);
-T24p= T_LO_function(5,9,psic,Ec,z);
-T2p4= T_LO_function(4,8,psic,Ec,z);
+T24= T_LO_function(5,8,psic,Ec,z,T);
+T24p= T_LO_function(5,9,psic,Ec,z,T);
+T2p4= T_LO_function(4,8,psic,Ec,z,T);
 
-T42= T_LO_function(8,5,psic,Ec,z);
-T42p= T_LO_function(8,4,psic,Ec,z);
-T4p2= T_LO_function(9,5,psic,Ec,z);
+T42= T_LO_function(8,5,psic,Ec,z,T);
+T42p= T_LO_function(8,4,psic,Ec,z,T);
+T4p2= T_LO_function(9,5,psic,Ec,z,T);
 
-T25= T_LO_function(5,10,psic,Ec,z);
-T25p= T_LO_function(5,12,psic,Ec,z);
-T2p5= T_LO_function(4,10,psic,Ec,z);
+T25= T_LO_function(5,10,psic,Ec,z,T);
+T25p= T_LO_function(5,12,psic,Ec,z,T);
+T2p5= T_LO_function(4,10,psic,Ec,z,T);
 
-T52= T_LO_function(10,5,psic,Ec,z);
-T52p= T_LO_function(10,4,psic,Ec,z);
-T5p2= T_LO_function(12,5,psic,Ec,z);
+T52= T_LO_function(10,5,psic,Ec,z,T);
+T52p= T_LO_function(10,4,psic,Ec,z,T);
+T5p2= T_LO_function(12,5,psic,Ec,z,T);
 
-T33p= T_LO_function(6,7,psic,Ec,z);
-T3p3= T_LO_function(7,6,psic,Ec,z);
+T33p= T_LO_function(6,7,psic,Ec,z,T);
+T3p3= T_LO_function(7,6,psic,Ec,z,T);
 
-T34= T_LO_function(6,8,psic,Ec,z);
-T34p= T_LO_function(6,9,psic,Ec,z);
-T3p4= T_LO_function(7,8,psic,Ec,z);
+T34= T_LO_function(6,8,psic,Ec,z,T);
+T34p= T_LO_function(6,9,psic,Ec,z,T);
+T3p4= T_LO_function(7,8,psic,Ec,z,T);
 
-T43= T_LO_function(8,6,psic,Ec,z);
-T43p= T_LO_function(8,7,psic,Ec,z);
-T4p3= T_LO_function(9,6,psic,Ec,z);
+T43= T_LO_function(8,6,psic,Ec,z,T);
+T43p= T_LO_function(8,7,psic,Ec,z,T);
+T4p3= T_LO_function(9,6,psic,Ec,z,T);
 
-T35= T_LO_function(6,10,psic,Ec,z);
-T35p= T_LO_function(6,12,psic,Ec,z);
-T3p5= T_LO_function(7,10,psic,Ec,z);
+T35= T_LO_function(6,10,psic,Ec,z,T);
+T35p= T_LO_function(6,12,psic,Ec,z,T);
+T3p5= T_LO_function(7,10,psic,Ec,z,T);
 
-T53= T_LO_function(10,6,psic,Ec,z);
-T53p= T_LO_function(10,7,psic,Ec,z);
-T5p3= T_LO_function(12,6,psic,Ec,z);
+T53= T_LO_function(10,6,psic,Ec,z,T);
+T53p= T_LO_function(10,7,psic,Ec,z,T);
+T5p3= T_LO_function(12,6,psic,Ec,z,T);
 
-T44p= T_LO_function(8,9,psic,Ec,z);
-T4p4= T_LO_function(9,8,psic,Ec,z);
+T44p= T_LO_function(8,9,psic,Ec,z,T);
+T4p4= T_LO_function(9,8,psic,Ec,z,T);
 
-T45= T_LO_function(8,10,psic,Ec,z);
-T45p= T_LO_function(8,12,psic,Ec,z);
-T4p5= T_LO_function(9,10,psic,Ec,z);
+T45= T_LO_function(8,10,psic,Ec,z,T);
+T45p= T_LO_function(8,12,psic,Ec,z,T);
+T4p5= T_LO_function(9,10,psic,Ec,z,T);
 
-T54= T_LO_function(10,8,psic,Ec,z);
-T54p= T_LO_function(10,9,psic,Ec,z);
-T5p4= T_LO_function(12,8,psic,Ec,z);
+T54= T_LO_function(10,8,psic,Ec,z,T);
+T54p= T_LO_function(10,9,psic,Ec,z,T);
+T5p4= T_LO_function(12,8,psic,Ec,z,T);
 
-T55p= T_LO_function(10,12,psic,Ec,z);
-T5p5= T_LO_function(12,10,psic,Ec,z);
+T55p= T_LO_function(10,12,psic,Ec,z,T);
+T5p5= T_LO_function(12,10,psic,Ec,z,T);
 
 Tijp_matrix= [T11p T12p T13p T14p T15p; T21p T22p T23p T24p T25p; T31p T32p T33p T34p T35p; T41p T42p T43p T44p T45p; T51p T52p T53p T54p T55p];
 Tipj_matrix= [T1p1 T1p2 T1p3 T1p4 T1p5; T2p1 T2p2 T2p3 T2p4 T2p5; T3p1 T3p2 T3p3 T3p4 T3p5; T4p1 T4p2 T4p3 T4p4 T4p5; T5p1 T5p2 T5p3 T5p4 T5p5];
+Tij_matrix= [T11 T12 T13 T14 T15; T21 T22 T23 T24 T25; T31 T32 T33 T34 T35; T41 T42 T43 T44 T45; T51 T52 T53 T54 T55];
 
 % Formation of coefficient matrix:
 
@@ -164,8 +165,8 @@ A = [ a11 a12 a13 a14 a15 ; a21 a22 a23 a24 a25 ; a31 a32 a33 a34 a35 ;
 
 % Time step:
 
-h=1e-19;
-t=linspace(0,2e-11,2e8+1);
+h=1e-18;
+t=linspace(0,2e-10,2e8+1);
 
 % Densities of states:
 
@@ -195,7 +196,7 @@ n5(1)=1e3;
 
 i=1;
 while i<length(t)
-    t0=t(i);
+%     t0=t(i);
     Q=[n1(i) n2(i) n3(i) n4(i) n5(i)]';
     k1=A*Q;
     Q1=Q+k1*h/2;
@@ -220,5 +221,5 @@ legend("n1", "n2", "n3", "n4", "n5",Location="best");
 
 ni_matrix= [n1(2e8+1) n2(2e8+1) n3(2e8+1) n4(2e8+1) n5(2e8+1)];
 
-
+end
 
