@@ -69,7 +69,7 @@ else
     T_12_emi=1e20;
 end
 
-% LO phonon lifetime
+% LO phonon lifetime    
 T_12= 1/(1/T_12_abs+1/T_12_emi);
 
 end

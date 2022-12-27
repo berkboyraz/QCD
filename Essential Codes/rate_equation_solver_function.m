@@ -59,8 +59,8 @@ T15= 1/(1/T_LO_function(1,10,psic,Ec,z,T)+radiative_transition_rate_function(45,
 T15p= T_LO_function(1,12,psic,Ec,z,T);
 T1p5= T_LO_function(3,10,psic,Ec,z,T);
 
-T51= 1/(T_LO_function(10,1,psic,Ec,z,T)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,10,1))
-% T51= T_LO_function(10,1,psic,Ec,z,T);
+% T51= 1/(T_LO_function(10,1,psic,Ec,z,T)+radiative_transition_rate_function(45,3.5,15e-3,Ec,w_pht,P_in_W_m2,psic,z,10,1));
+T51= T_LO_function(10,1,psic,Ec,z,T);
 T51p= T_LO_function(10,3,psic,Ec,z,T);
 T5p1= T_LO_function(12,1,psic,Ec,z,T);
 
@@ -126,7 +126,7 @@ T5p5= T_LO_function(12,10,psic,Ec,z,T);
 
 Tijp_matrix= [T11p T12p T13p T14p T15p; T21p T22p T23p T24p T25p; T31p T32p T33p T34p T35p; T41p T42p T43p T44p T45p; T51p T52p T53p T54p T55p];
 Tipj_matrix= [T1p1 T1p2 T1p3 T1p4 T1p5; T2p1 T2p2 T2p3 T2p4 T2p5; T3p1 T3p2 T3p3 T3p4 T3p5; T4p1 T4p2 T4p3 T4p4 T4p5; T5p1 T5p2 T5p3 T5p4 T5p5];
-Tij_matrix= [T11 T12 T13 T14 T15; T21 T22 T23 T24 T25; T31 T32 T33 T34 T35; T41 T42 T43 T44 T45; T51 T52 T53 T54 T55];
+Tij_matrix= [0 T12 T13 T14 T15; T21 0 T23 T24 T25; T31 T32 0 T34 T35; T41 T42 T43 0 T45; T51 T52 T53 T54 0];
 
 % Formation of coefficient matrix:
 
@@ -163,55 +163,139 @@ a55= -(1/T51+1/T51p+1/T5p1+1/T52+1/T52p+1/T5p2+1/T53+1/T53p+1/T5p3+1/T54+1/T54p+
 A = [ a11 a12 a13 a14 a15 ; a21 a22 a23 a24 a25 ; a31 a32 a33 a34 a35 ;
     a41 a42 a43 a44 a45 ; a51 a52 a53 a54 a55 ];
 
-% Time step:
+% % % % Time step:
+% % % 
+% % % h=1e-25;
+% % % t=linspace(0,2e-18,2e7+1);
 
-h=1e-18;
-t=linspace(0,2e-10,2e8+1);
+% % % % Densities of states:
+% % % 
+% % % n1=zeros(1, length(t));
+% % % n2=zeros(1, length(t));
+% % % n3=zeros(1, length(t));
+% % % n4=zeros(1, length(t));
+% % % n5=zeros(1, length(t));
 
-% Densities of states:
+% % % % % Initial values (setting 1):
+% % % % 
+% % % % n1(1)=2e17;
+% % % % n2(1)=1e7;
+% % % % n3(1)=1e4;
+% % % % n4(1)=1e1;
+% % % % n5(1)=1e-1;
+% % % 
+% % % % Initial values (setting 2):
+% % % 
+% % % n1(1)=2e17;
+% % % n2(1)=1e3;
+% % % n3(1)=1e3;
+% % % n4(1)=1e3;
+% % % n5(1)=1e3;
 
-n1=zeros(1, length(t));
-n2=zeros(1, length(t));
-n3=zeros(1, length(t));
-n4=zeros(1, length(t));
-n5=zeros(1, length(t));
+% % % % Solution:
+% % % 
+% % % i=1;
+% % % 
+% % % Ah1 = h*A;
+% % % Ah2 = Ah1 * Ah1;
+% % % Ah3 = Ah2 * Ah1;
+% % % Ah4 = Ah3 * Ah1;
 
-% % Initial values (setting 1):
-% 
-% n1(1)=2e17;
-% n2(1)=1e7;
-% n3(1)=1e4;
-% n4(1)=1e1;
-% n5(1)=1e-1;
+% % % while i<length(t)
+% % %     
+% % % %     t0=t(i);
+% % % 
+% % %     Q=[n1(i) n2(i) n3(i) n4(i) n5(i)]';
+% % % 
+% % % %     k1=A*Q;
+% % % %     Q1=Q+k1*h/2;
+% % % %     k2=A*Q1;
+% % % %     Q2=Q+k2*h/2;
+% % % %     k3=A*Q2;
+% % % %     Q3=Q+k3*h;
+% % % %     k4=A*Q3;
+% % % %     Q_next=Q+((k1+2.*k2+2.*k3+k4)./6)*h;
+% % % 
+% % % %     Q_next=Q+(((A*Q)+2.*(A*(Q+(A*Q)*h/2))+2.*(A*(Q+(A*(Q+(A*Q)*h/2))*h/2))+(A*(Q+(A*(Q+(A*(Q+(A*Q)*h/2))*h/2))*h)))./6)*h;
+% % %     
+% % %     Q_next = Q + Ah1*Q + (1/2)*Ah2*Q + (1/6)*Ah3*Q + (1/24)*Ah4*Q;
+% % % 
+% % %     i=i+1;
+% % %     n1(i)=Q_next(1); 
+% % %     n2(i)=Q_next(2); 
+% % %     n3(i)=Q_next(3);
+% % %     n4(i)=Q_next(4);
+% % %     n5(i)=Q_next(5);
+% % % end
 
-% Initial values (setting 2):
 
+% Adaptive Runge-Kutta-Fehlberg Method
+% A lecture on the method: https://www.youtube.com/watch?v=9g_geBN08IY
+% Initial parameters
+
+tf=1e-4;
+h=1e-15;
+n_max=5e4;
+e_min=1e0;
+e_max=1e2;
+h_min=1e-25;
+h_max=1e-5;
+t=zeros(1 ,n_max);
+n1=zeros(1, n_max);
+n2=zeros(1, n_max);
+n3=zeros(1, n_max);
+n4=zeros(1, n_max);
+n5=zeros(1, n_max);
+t(1)=0;
 n1(1)=2e17;
 n2(1)=1e3;
 n3(1)=1e3;
 n4(1)=1e3;
 n5(1)=1e3;
-
-% Solution:
-
 i=1;
-while i<length(t)
-%     t0=t(i);
+
+while i<n_max && t(i)<tf
+    if h<h_min
+        h=h_min;
+    elseif h>h_max
+        h=h_max;
+    end
+
     Q=[n1(i) n2(i) n3(i) n4(i) n5(i)]';
-    k1=A*Q;
-    Q1=Q+k1*h/2;
-    k2=A*Q1;
-    Q2=Q+k2*h/2;
-    k3=A*Q2;
-    Q3=Q+k3*h;
-    k4=A*Q3;
-    Q_next=Q+((k1+2.*k2+2.*k3+k4)./6)*h;
-    i=i+1;
-    n1(i)=Q_next(1); 
-    n2(i)=Q_next(2); 
-    n3(i)=Q_next(3);
-    n4(i)=Q_next(4);
-    n5(i)=Q_next(5);
+
+    k_1 = A*Q;
+    Q_1 = Q+k_1*h/4;
+    k_2 = A*Q_1;
+    Q_2 = Q+k_1*h*3/32+k_2*h*9/32;
+    k_3 = A*Q_2;
+    Q_3 = Q+k_1*h*1932/2197-k_2*h*7200/2197+k_3*h*7296/2197;
+    k_4 = A*Q_3;
+    Q_4 = Q+k_1*h*439/216-k_2*h*8+k_3*h*3680/513-k_4*h*845/4104;
+    k_5 = A*Q_4;
+    Q_next_5 = Q+k_1*h*25/216+k_3*h*1408/2565+k_4*h*2197/4104-k_5*h*1/5;
+
+    Q_5 = Q-k_1*h*8/27+k_2*h*2-k_3*h*3544/2565+k_4*h*1859/4104-k_5*h*11/40;
+    k_6 = A*Q_5;
+
+    Q_next_6 = Q+k_1*h*16/135+k_3*h*6656/12825+k_4*h*28561/56430-k_5*h*9/50+k_6*h*2/55;
+
+    error = max(abs(Q_next_5-Q_next_6));
+
+    if error>e_max && h>h_min
+        h=h/2;
+    else 
+        i=i+1;
+        t(i)=t(i-1)+h;
+        n1(i)=Q_next_6(1);
+        n2(i)=Q_next_6(2);
+        n3(i)=Q_next_6(3);
+        n4(i)=Q_next_6(4);
+        n5(i)=Q_next_6(5);
+
+        if error<e_min
+            h=h*2;
+        end
+    end
 end
 
 figure('units','normalized','outerposition',[0 0 1 1]);
@@ -219,7 +303,7 @@ semilogy(t, n1, t, n2, t, n3, t, n4, t, n5, LineWidth=5);
 grid("minor");
 legend("n1", "n2", "n3", "n4", "n5",Location="best");
 
-ni_matrix= [n1(2e8+1) n2(2e8+1) n3(2e8+1) n4(2e8+1) n5(2e8+1)];
+ni_matrix= [n1(i-1) n2(i-1) n3(i-1) n4(i-1) n5(i-1)];
 
 end
 

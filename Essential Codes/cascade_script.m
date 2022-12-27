@@ -2,12 +2,12 @@ clear all
 close all
 clc
 
-T=300; % [kelvin]
-c= 3e8; % speed of light in free space [m/s]    
-P_in_W_m2=1e-9;
+T = 300; % [kelvin]
+c = 3e8; % speed of light in free space [m/s]    
+P_in_W_m2 = 1e-12;
 % [psic, Ec, z] = SchrodingerPoisson1D_CB_Kane_Main(300, 0.01);
-wavelength= 9e-6;
-w_pht=2*pi*c./wavelength;
+wavelength = 9e-6;
+w_pht = 2*pi*c./wavelength;
 
 load("schrodinger_solver_output_300K_0V.mat");
 
